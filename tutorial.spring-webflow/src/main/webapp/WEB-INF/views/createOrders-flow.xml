@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<on-start>
+		<evaluate expression="orderController.initializeForm()" result="flowScape.orderForm"></evaluate>
+		<evaluate expression="orderController.initializeSelectableCategories()" result="flowScope.selectableCategories"></evaluate>
+	</on-start>
+	
+	<view-state id="selectCategory" model="orderForm" view="selectCategory">
+		<transition on="next" to="selectBooks">
+			<evaluate expression="orderController.initializeSelectableBook(flowScape.orderForm)" result="flowScope.selectableBooks"></evaluate>
+		</transition>
+		<transition on="cancel" to="end"></transition>
+	</view-state>
+	
+	<end-state id="end" view="redirect:/index.htm"></end-state>
+
+</flow>

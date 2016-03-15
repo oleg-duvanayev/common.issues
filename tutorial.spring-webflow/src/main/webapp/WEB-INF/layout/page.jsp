@@ -6,9 +6,7 @@
 <html>
 	<head>
 	<meta charset="UTF-8">
-	<title>Spitter HTML5</title>
-	<s:url value="/resources/style.css" var="style"></s:url>
-	<link rel="stylesheet" href="${style}" type="text/css" />
+	<title>study of apache web-flow</title>
 	</head>
 <body>
 	<div id="header">

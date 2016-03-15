@@ -6,6 +6,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Test
+Test home page
 </body>
 </html>

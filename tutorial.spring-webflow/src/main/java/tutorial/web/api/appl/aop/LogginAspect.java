@@ -12,16 +12,18 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class LogginAspect {
 	private Logger logger = Logger.getLogger(getClass());
-	   @Around("execution( * tutorial.web.api.*.*(..))" )
-	   public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
 
-		logger.debug("================== START:: "+joinPoint.getSignature().getName()+" ==================" );
+	@Around("execution( * tutorial.web.appl.controller.*Controller.*(..))" )
+	public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
+
+		logger.debug("================== START:: " + joinPoint.getSignature().getName() + " ==================");
 		logger.debug("Arguments : " + Arrays.toString(joinPoint.getArgs()));
-			
-		Object result = joinPoint.proceed(); //continue on the intercepted method
-		logger.debug("Returned value: ["+result+"]");
-			
-		logger.debug("================== END:: "+joinPoint.getSignature().getName()+" ==================" );
+
+		Object result = joinPoint.proceed(); // continue on the intercepted
+												// method
+		logger.debug("Returned value: [" + result + "]");
+
+		logger.debug("================== END:: " + joinPoint.getSignature().getName() + " ==================");
 		return result;
-	   }
+	}
 }

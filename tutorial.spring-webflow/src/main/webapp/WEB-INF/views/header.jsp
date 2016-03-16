@@ -4,6 +4,6 @@
 
 
 <li>
-	<s:url value="/createOrders" var="createOrder"></s:url>
-	<a href="${createOrder}">Buy books</a>
+	<s:url value="ordering/order" var="createOrder"></s:url>
+	<a href="${createOrder}"> webflow</a>
 </li>

@@ -1,6 +1,8 @@
 package tutorial.web.appl.domain;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable{
 	private String name;
 	private Long id;
 	

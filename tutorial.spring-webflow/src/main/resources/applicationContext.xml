@@ -9,9 +9,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
-	<context:component-scan base-package="tutorial.web" /> 
+	<context:component-scan base-package="tutorial" /> 
 	<mvc:annotation-driven />
 	<aop:aspectj-autoproxy />
+	<context:annotation-config />
+	
 	
 	<bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
 		<property name="definitions">

@@ -3,17 +3,33 @@
 	xmlns:webflow="http://www.springframework.org/schema/webflow-config"
 	xsi:schemaLocation="
            http://www.springframework.org/schema/beans 
-           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/beans/spring-beans.xsd
            http://www.springframework.org/schema/webflow-config 
            http://www.springframework.org/schema/webflow-config/spring-webflow-config-2.3.xsd">
 
+    <!-- Web Flow components -->
+    <!-- Install flow handler (FlowHandlerAdapter) -->
+    <!-- It dispatches URL requests to flows -->
+    <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerAdapter">
+	<property name="flowExecutor" ref="flowExecutor"/>
+    </bean>
+
+    <!-- Map Http request path to flows register in the registry -->
+    <bean class="org.springframework.webflow.mvc.servlet.FlowHandlerMapping">
+        <property name="flowRegistry" ref="flowRegistry"/>
+        <property name="order" value="0"/>
+    </bean>
+    
+    
 	<webflow:flow-executor id="flowExecutor"/>
 
-	<webflow:flow-registry id="flowRegistry" base-path="/WEB-INF/views" flow-builder-services="flowBuilderServices">
+	<webflow:flow-registry id="flowRegistry" base-path="/WEB-INF/flows" 
+		flow-builder-services="flowBuilderServices">
 		<webflow:flow-location-pattern value="/**/*-flow.xml" />
 	</webflow:flow-registry>
 
-	<webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator" development="true"/>
+	<webflow:flow-builder-services id="flowBuilderServices" view-factory-creator="mvcViewFactoryCreator" 
+		development="true"/>
 	
 	<bean id="mvcViewFactoryCreator" class="org.springframework.webflow.mvc.builder.MvcViewFactoryCreator">
 		<property name="viewResolvers">

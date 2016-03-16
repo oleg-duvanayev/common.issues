@@ -5,17 +5,17 @@
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<on-start>
-		<evaluate expression="orderController.initializeForm()" result="flowScape.orderForm"></evaluate>
+		<evaluate expression="orderController.initializeForm()" result="flowScope.orderForm"></evaluate>
 		<evaluate expression="orderController.initializeSelectableCategories()" result="flowScope.selectableCategories"></evaluate>
 	</on-start>
 	
 	<view-state id="selectCategory" model="orderForm" view="selectCategory">
 		<transition on="next" to="selectBooks">
-			<evaluate expression="orderController.initializeSelectableBook(flowScape.orderForm)" result="flowScope.selectableBooks"></evaluate>
+			<evaluate expression="orderController.initializeSelectableBook(flowScope.orderForm)" result="flowScope.selectableBooks"></evaluate>
 		</transition>
 		<transition on="cancel" to="end"></transition>
 	</view-state>
 	
-	<end-state id="end" view="redirect:/index.htm"></end-state>
+	<end-state id="end" view="redirect:/index.html"></end-state>
 
 </flow>

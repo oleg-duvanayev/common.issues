@@ -15,5 +15,9 @@
   <definition name="selectCategory" extends="base">
     <put-attribute name="body" value="/WEB-INF/views/selectCategory.jsp" />
   </definition>
+
+  <definition name="viewOrder" extends="base">
+    <put-attribute name="body" value="/WEB-INF/views/viewOrder.jsp" />
+  </definition>
   
 </tiles-definitions>

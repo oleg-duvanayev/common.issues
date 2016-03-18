@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/webflow
+        http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
+
+	<view-state id="start" view="create-group" model="emailGroupForm">
+		<on-render>
+			<evaluate expression="groupController.initializeForm()" result="flowScope.emailGroupForm"></evaluate>
+		</on-render>
+		<transition on="next" to="addNewContact">
+			<evaluate expression="groupController.createNewContact(flowScope.emailGroupForm)" result="flowScope.contactForm"></evaluate>
+		</transition>
+		<transition on="cancel" to="end"></transition>
+	</view-state>
+	
+	<view-state id="addNewContact" model="contactForm" view="create-contact">
+		<transition on="add">
+			<evaluate expression="groupController.addContactToGroup(flowScope.emailGroupForm,flowScope.contactForm)" result="flowScope.emailGroupForm"></evaluate>
+		</transition>
+		<transition on="save" to="end">
+			<evaluate expression="groupController.saveEmailGroup(flowScope.emailGroupForm)"></evaluate>
+		</transition>
+		<transition on="cancel" to="end"></transition>
+	</view-state> 
+	
+	<view-state id="end" view="redirect:/"></view-state>
+	
+</flow>

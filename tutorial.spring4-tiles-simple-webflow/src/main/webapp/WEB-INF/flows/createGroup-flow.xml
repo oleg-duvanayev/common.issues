@@ -5,16 +5,17 @@
         http://www.springframework.org/schema/webflow/spring-webflow-2.0.xsd">
 
 	<view-state id="start" view="create-group" model="emailGroupForm">
-		<on-render>
+ 		<on-render>
 			<evaluate expression="groupController.initializeForm()" result="flowScope.emailGroupForm"></evaluate>
-		</on-render>
-		<transition on="next" to="addNewContact">
-			<evaluate expression="groupController.createNewContact()" result="flowScope.contactForm"></evaluate>
-		</transition>
+		</on-render> 
+		<transition on="next" to="addNewContact"></transition>
 		<transition on="cancel" to="end"></transition>
 	</view-state>
 	
 	<view-state id="addNewContact" model="contactForm" view="create-contact">
+		<on-render>
+			<evaluate expression="groupController.createNewContact()" result="flowScope.contactForm"></evaluate>
+		</on-render>
 		<transition on="add">
 			<evaluate expression="groupController.addContactToGroup(flowScope.emailGroupForm,flowScope.contactForm)" result="flowScope.emailGroupForm"></evaluate>
 		</transition>

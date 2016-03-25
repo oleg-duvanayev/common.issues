@@ -7,7 +7,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Controller;
 
 import tutorial.web.domain.ContactForm;
@@ -51,6 +50,7 @@ public class GroupController {
 	
 	public void saveEmailGroup(EmailGroupForm group){
 		System.out.println("groupHash is ["+group.hashCode()+"], the contact's hash=["+group.getContacts().toArray(new ContactForm[]{})[0].hashCode()+"]");
+		System.out.println();
 		String sessionId = request.getSession().getId();
 		if(cache.containsKey(sessionId)){
 			System.out.println("cache contains the datas");
